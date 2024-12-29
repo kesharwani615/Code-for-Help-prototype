@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+     margin: 0;
+     padding: 0;
+    }
+
+    .main{
+      min-height: 100vh;
+      min-width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .skeleton{
+     height: 200px;
+     width: 300px;
+     border-radius: 20px;
+     background:linear-gradient(
+        120deg,
+        #e5e5e5 30%,
+        #f0f0f0 38%,
+        #f0f0f0 40%,
+        #e5e5e5 40%
+     );
+     background-size: 200% 100%;
+     background-position: 100% 0;
+     animation: load 2s infinite;
+    }
+    @keyframes load{
+        100%{
+            background-position: -100% 0;
+        }
+    }
+    
+</style>
+<body>
+<div class="main">
+    <div class="skeleton">
+        
+    </div>    
+</div>
+</body>
+</html>
