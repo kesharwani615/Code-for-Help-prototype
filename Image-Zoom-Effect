@@ -1,0 +1,22 @@
+import React from "react";
+import ReactImageMagnifier from 'simple-image-magnifier/react';
+import "bootstrap/dist/css/bootstrap.min.css";
+// import Accessories from "../assets/images/Accessories-1.png"; // Import the image
+
+const ZoomEffect = ({source}) => {
+    // console.log("soufce:",source);  
+    
+    return (
+        <div className="flex justify-center items-center p-4 bg-gray-100">
+            <ReactImageMagnifier
+                srcPreview={source}
+                srcOriginal={source}
+                width={400}
+                height={600}
+                className="rounded-lg shadow-md bg-white"
+            />
+        </div>
+    );
+};
+
+export default ZoomEffect;
