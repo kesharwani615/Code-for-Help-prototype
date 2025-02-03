@@ -1,0 +1,72 @@
+const OTPVerify = () => {
+  const navigate = useNavigate();
+  const [otpState,setOtpState] = useState('');
+  const [otpArr,setOtpArr] = useState([0,1,2,3,4,5])
+  const [selectItem,setSelectItem] = useState(0)
+  const OTPRef = useRef([]);
+
+  const handleChange=(event,item)=>{
+    const {name,value} = event.target;
+    console.log(value,item);
+    if(value && (item + 1) < otpArr.length){
+      setSelectItem(item+1);
+      OTPRef?.current?.[item + 1].focus()
+    }
+    else if(value?.length === 0 && (item - 1) >= 0){
+      console.log(value);
+      setSelectItem(item - 1);
+      OTPRef?.current?.[item - 1].focus()
+    }
+  }
+
+  useEffect(()=>{
+    if(OTPRef.current[0]){
+      OTPRef?.current?.[0].focus();
+    }
+  },[])
+  
+  return (
+    <>
+     <div className="LoginArea">
+  <div className="LoginBox">
+    <div className="LoginLeft">
+      <figure>
+        <img src="images/Logo.png" />
+      </figure>
+      {/* <h2>Huk N <span>Buk</span></h2> */}
+      <h3>
+        <span>OTP Verification</span>
+      </h3>
+      <h4>
+        Please enter 6 digit OTP Verification code recieved <br /> on your email
+        address/ contact number.
+      </h4>
+      <form>
+        <div className="form-group">
+          <div className="OTPBox">
+          {otpArr?.map((item)=>{
+            return(
+              <input type="text" key={item} ref={(el) => (OTPRef.current[item] = el)} onChange={(e)=>handleChange(e,item)} style={{border:`${item === selectItem ? '1px solid blue':'1px solid black'}`, boxShadow:`${item=== selectItem ? 'rgba(0, 0, 0, 0.45) 1.95px 1.95px 2.6px' : 'none'}`}} className="form-control" maxLength={1} />
+            )
+          })
+          }
+          </div>
+          <p className="text-right">
+            <a>Resend</a>
+          </p>
+        </div>
+        {/* <button class="Login">Submit</button>  */}
+        <Link className="Login" to={'/login/ResetPassword'}>
+          VERIFY OTP
+        </Link>
+        <Link className="Login Back aa" onClick={()=>navigate(-2)}>
+          Back to Login
+        </Link>
+      </form>
+    </div>
+  </div>
+</div>
+ 
+    </>
+  )
+}
